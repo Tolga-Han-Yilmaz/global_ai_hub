@@ -1,12 +1,16 @@
 import navStyle from "./navbar.module.css";
 import logo from "../../assets/globalaihub.png";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <nav>
       <div className={navStyle["container"]}>
-        <img src={logo} alt="" />
+        <Link to="/" className={navStyle["link"]}>
+          <img src={logo} alt="" />
+        </Link>
         <div className={navStyle["course"]}>
           <Link to="/" className={navStyle["btn"]}>
             My Courses
