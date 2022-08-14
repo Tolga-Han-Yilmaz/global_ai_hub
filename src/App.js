@@ -1,10 +1,11 @@
 import AppRouter from "./router/AppRouter";
+import CourseContextProvider from "./context/CourseContextProvider";
 
 function App() {
   return (
-    <div>
+    <CourseContextProvider>
       <AppRouter />
-    </div>
+    </CourseContextProvider>
   );
 }
 

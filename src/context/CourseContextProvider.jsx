@@ -11,19 +11,28 @@ export const useCourseContext = () => {
 
 //? 2- Provider Component
 const CourseContextProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
+  const [allCourses, setAllCourses] = useState([]);
+  const [myCourses, setMyCourses] = useState([]);
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data.products));
+    fetch(
+      "https://40060bec-d8e7-4ad2-96c2-63b9fdb4ef24.mock.pstmn.io/wp-json/ldlms/v2/sfwd-courses"
+    )
+      .then((response) => response.json())
+      .then((result) => setAllCourses(result))
+      .catch((error) => console.log("error", error));
   }, []);
 
-  // product categories
-  const c = products.map((product) => product.category);
-  const categories = [...new Set(c)];
+  useEffect(() => {
+    fetch(
+      "https://40060bec-d8e7-4ad2-96c2-63b9fdb4ef24.mock.pstmn.io/wp-json/ldlms/v2/my_courses"
+    )
+      .then((response) => response.json())
+      .then((result) => setMyCourses(result))
+      .catch((error) => console.log("error", error));
+  }, []);
 
-  const values = { products, categories };
+  const values = { allCourses, myCourses };
   return (
     <CourseContext.Provider value={values}>{children}</CourseContext.Provider>
   );
