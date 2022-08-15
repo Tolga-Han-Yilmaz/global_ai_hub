@@ -12,10 +12,10 @@ const Navbar = () => {
           <img src={logo} alt="" />
         </Link>
         <div className={navStyle["course"]}>
-          <Link to="/" className={navStyle["btn"]}>
+          <Link to="/mycourses" className={navStyle["btn"]}>
             My Courses
           </Link>
-          <Link to="/" className={navStyle["btn"]}>
+          <Link to="/courses" className={navStyle["btn"]}>
             courses
           </Link>
         </div>

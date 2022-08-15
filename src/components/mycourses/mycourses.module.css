@@ -1,0 +1,18 @@
+.mycourses {
+  display: grid;
+  text-align: center;
+}
+.my-card {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  margin: auto;
+}
+
+.my-card--img {
+  grid-column: span 12;
+  margin: auto;
+}
+.my-card--info {
+  margin: auto;
+  grid-column: span 12;
+}
