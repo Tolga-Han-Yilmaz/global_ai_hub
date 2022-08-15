@@ -1,4 +1,4 @@
-import allStyles from "./allcourses.mmodule.css";
+import allStyles from "./allcourses.module.css";
 import { useCourseContext } from "../../context/CourseContextProvider";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useState } from "react";
@@ -28,22 +28,43 @@ const AllCourses = () => {
       return checkNumber(number);
     });
   }
+
   return (
-    <div className="allcourse">
-      <div className="container">
-        <FaChevronLeft className="icon col" onClick={handleLeft} />
-        <div className="productinfo-img col">
+    <div className={allStyles["allcourse"]}>
+      <div className={allStyles["container"]}>
+        <FaChevronLeft className={allStyles["icon"]} onClick={handleLeft} />
+        <div className={allStyles["allcourse-info"]}>
           {/* <img
-            src={allCourses[index]?.thumbnail}
-            alt={allCourses[index]?.title}
+            className={allStyles["info-img"]}
+            src={allCourses[index]?.card_image}
+            alt={allCourses[index]?.title.rendered}
           /> */}
-          <div>
-            <h3>{allCourses[index]?.title.rendered}</h3>
-            <p>{allCourses[index]?.guid.rendered}</p>
-            <button>SHOP NOW</button>
+          <img
+            className={allStyles["info-img"]}
+            src="https://cdn.pixabay.com/photo/2022/08/07/16/03/bee-7370876_960_720.jpg"
+            alt=""
+          />
+          <div className={allStyles["info-text"]}>
+            <h5>{allCourses[index]?.slug.replace(/-/g, " ")} </h5>
+            {/* <p>{allCourses[index]?.content.rendered}</p> */}
+
+            <button className={allStyles["btn"]}></button>
           </div>
         </div>
-        <FaChevronRight className="col icon" onClick={handleRight} />
+        <FaChevronRight className={allStyles["icon"]} onClick={handleRight} />
+      </div>
+      <div className={allStyles["container"]}>
+        {allCourses?.map((course) => {
+          return (
+            <div className="course-lists">
+              <img
+                src="https://cdn.pixabay.com/photo/2022/08/07/16/03/bee-7370876_960_720.jpg"
+                alt=""
+              />
+              <h5>{course.slug.replace(/-/g, " ")} </h5>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
