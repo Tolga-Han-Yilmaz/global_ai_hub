@@ -2,6 +2,7 @@
   display: grid;
   grid-column: span 12;
   grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
 }
 
 .div-card {
@@ -15,7 +16,7 @@
 .card {
   width: 300px;
   margin: 10px;
-  background-color: white;
+  background-color: var(--clr-white);
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
 }
 .card:hover .card__caption {
@@ -69,14 +70,14 @@
   top: 50%;
   z-index: 1;
   padding: 0 20px;
-  color: white;
+  color: var(--clr-white);
   transform: translateY(-50%);
   text-align: center;
   transition: 0.3s;
 }
 @media (min-width: 1024px) {
   .card__caption {
-    top: calc(106% - 110px);
+    top: calc(110% - 110px);
     transform: unset;
   }
 }
@@ -87,7 +88,7 @@
   font-family: "Playfair Display", serif;
   font-size: 23px;
   line-height: 28px;
-  text-shadow: 0px 1px 5px black;
+  text-shadow: 0px 1px 5px --clr-black;
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -113,8 +114,8 @@
 .card__button {
   display: inline-block;
   padding: 10px 20px;
-  color: white;
-  border: 1px solid white;
+  color: var(--clr-white);
+  border: 1px solid var(--clr-white);
   font-family: "Roboto", sans-serif;
   font-size: 12px;
   text-transform: uppercase;
@@ -122,6 +123,20 @@
   transition: 0.3s;
 }
 .card__button:hover {
-  color: black;
-  background-color: white;
+  color: var(--clr-black);
+  background-color: var(--clr-white);
+}
+
+@media screen and (min-width: 768px) {
+  .lists {
+    width: 90%;
+  }
+  .div-card {
+    grid-column: span 6;
+  }
+}
+@media screen and (min-width: 992px) {
+  .div-card {
+    grid-column: span 4;
+  }
 }

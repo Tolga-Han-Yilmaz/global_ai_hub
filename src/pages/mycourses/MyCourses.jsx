@@ -46,17 +46,18 @@ const MyCourses = () => {
                 </div>
               );
             })}
-            <div className={myStyles["div-btn"]} onClick={(e) => handlePage(e)}>
-              <button value="1" className="btn">
-                1
-              </button>
-              <button value="2" className="btn">
-                2
-              </button>
-              <button value="3" className="btn">
-                3
-              </button>
-            </div>
+          </div>
+
+          <div className={myStyles["div-btn"]} onClick={(e) => handlePage(e)}>
+            <button value="1" className="btn">
+              1
+            </button>
+            <button value="2" className="btn">
+              2
+            </button>
+            <button value="3" className="btn">
+              3
+            </button>
           </div>
         </div>
       )}

@@ -2,10 +2,19 @@
   display: grid;
   text-align: center;
 }
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+}
 .my-card {
+  grid-column: span 12;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   margin: auto;
+  border: 1px solid red;
+  height: 400px;
 }
 
 .my-card--img {
@@ -25,4 +34,19 @@
 }
 .div-btn button:nth-child(2) {
   margin: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 90%;
+    margin: auto;
+  }
+  .my-card {
+    grid-column: span 6;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .my-card {
+    grid-column: span 3;
+  }
 }
