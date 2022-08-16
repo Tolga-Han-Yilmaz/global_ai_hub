@@ -11,8 +11,18 @@
 .my-card--img {
   grid-column: span 12;
   margin: auto;
+  width: 300px;
 }
 .my-card--info {
   margin: auto;
   grid-column: span 12;
+}
+
+.div-btn button {
+  padding: 0.7rem;
+  border-radius: 50%;
+  background-color: var(--clr-primary-4);
+}
+.div-btn button:nth-child(2) {
+  margin: 1rem;
 }

@@ -1,9 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import AllCourses from "../components/allcourses/AllCourses";
-import MyCourses from "../components/mycourses/MyCourses";
+import AllCourses from "../pages/allcourses/AllCourses";
+import MyCourses from "../pages/mycourses/MyCourses";
 import Navbar from "../components/navbar/Navbar";
-import Home from "../pages/Home";
+import Home from "../pages/home/Home";
+import Footer from "../components/footer/Footer";
 
 const AppRouter = () => {
   return (
@@ -14,6 +15,7 @@ const AppRouter = () => {
         <Route path="/courses" element={<AllCourses />} />
         <Route path="/mycourses" element={<MyCourses />} />
       </Routes>
+      <Footer />
     </div>
   );
 };
