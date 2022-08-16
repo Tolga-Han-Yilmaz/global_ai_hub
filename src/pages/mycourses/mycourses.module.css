@@ -50,3 +50,27 @@
     grid-column: span 3;
   }
 }
+
+.pagination {
+  padding-left: 5rem;
+  list-style: none;
+  display: flex;
+  gap: 5px;
+  margin-top: 2rem;
+}
+.pagination li {
+  padding: 5px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.325);
+  cursor: pointer;
+  font-family: "Montserrat";
+}
+.active-li {
+  background-color: black;
+  color: white;
+}
+.pagination button {
+  padding: 5px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.325);
+  cursor: pointer;
+  background: transparent;
+}

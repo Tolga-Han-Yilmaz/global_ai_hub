@@ -5,7 +5,7 @@ import AllCoursesSlider from "../../components/allcoursesslider/AllCoursesSlider
 import AllCoursesLists from "../../components/allcourseslists/AllCoursesLists";
 
 const AllCourses = () => {
-  const { load } = useCourseContext();
+  const { load, allCourses } = useCourseContext();
 
   return (
     <>
@@ -14,7 +14,10 @@ const AllCourses = () => {
       ) : (
         <div className={allStyles["allcourse"]}>
           <AllCoursesSlider />
-          <AllCoursesLists />
+
+          {allCourses?.map((course) => (
+            <AllCoursesLists key={course.id} course={course} />
+          ))}
         </div>
       )}
     </>

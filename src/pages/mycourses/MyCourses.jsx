@@ -5,17 +5,50 @@ import { useEffect, useState } from "react";
 
 const MyCourses = () => {
   const { myCourses, load } = useCourseContext();
-  const [items, setItems] = useState([]);
+  const [myCoursesData, setMyCourseData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(4);
+  const [pageNumberLimit] = useState(3);
+  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(3);
+  const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
+
   useEffect(() => {
-    setItems(myCourses?.slice(0, 4));
-  }, []);
+    setMyCourseData(myCourses);
+  }, [myCourses]);
 
-  const handlePage = (e) => {
-    let number = Number(e.target.value);
-    setItems(myCourses?.slice(4 * number - 4, 4 * number));
+  const pages = [];
+  for (
+    let i = 1;
+    i <= Math.ceil(myCoursesData && myCoursesData.length / itemsPerPage);
+    i++
+  ) {
+    pages.push(i);
+  }
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = myCoursesData.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handleClick = (e) => {
+    setCurrentPage(e.target.id);
   };
-  console.log(items);
 
+  const handleNextBtn = () => {
+    setCurrentPage(Number(currentPage) + 1);
+    if (currentPage + 1 > maxPageNumberLimit) {
+      setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
+      setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
+    }
+  };
+
+  const handlePrevBtn = () => {
+    setCurrentPage(Number(currentPage) - 1);
+    if ((currentPage - 1) % pageNumberLimit === 0) {
+      setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
+      setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
+    }
+  };
+  console.log(myCourses);
   return (
     <>
       {!load ? (
@@ -24,14 +57,14 @@ const MyCourses = () => {
         <div className={myStyles["mycourses"]}>
           <h1>My Courses</h1>
           <div className={myStyles["container"]}>
-            {items?.map((mycourse) => {
+            {currentItems?.map((mycourse) => {
               const { id, title, link, description, card_image, categories } =
                 mycourse;
               return (
                 <div className={myStyles["my-card"]} key={id}>
                   <img
                     className={myStyles["my-card--img"]}
-                    src={defImg1}
+                    src={card_image ? card_image : defImg1}
                     alt={title}
                   />
                   <div className={myStyles["my-card--info"]}>
@@ -48,17 +81,47 @@ const MyCourses = () => {
             })}
           </div>
 
-          <div className={myStyles["div-btn"]} onClick={(e) => handlePage(e)}>
-            <button value="1" className="btn">
-              1
+          <ul className={myStyles["pagination"]}>
+            <button
+              onClick={handlePrevBtn}
+              disabled={currentPage === pages[0] ? true : false}
+            >
+              {"<"}
             </button>
-            <button value="2" className="btn">
-              2
+            {pages.map((number) => {
+              if (
+                number < maxPageNumberLimit + 1 &&
+                number > minPageNumberLimit
+              ) {
+                return (
+                  <li
+                    key={number}
+                    id={number}
+                    className={
+                      Number(currentPage) === Number(number)
+                        ? "active-li"
+                        : null
+                    }
+                    style={
+                      Number(currentPage) === Number(number)
+                        ? { backgroundColor: "black", color: "white" }
+                        : null
+                    }
+                  >
+                    {number}
+                  </li>
+                );
+              } else {
+                return null;
+              }
+            })}
+            <button
+              onClick={handleNextBtn}
+              disabled={currentPage === pages[pages.length - 1] ? true : false}
+            >
+              {">"}
             </button>
-            <button value="3" className="btn">
-              3
-            </button>
-          </div>
+          </ul>
         </div>
       )}
     </>

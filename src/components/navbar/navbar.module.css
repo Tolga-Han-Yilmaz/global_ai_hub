@@ -1,27 +1,30 @@
 nav {
   display: flex;
   justify-content: center;
-  box-shadow: 5px 2px 8px 2px #888888;
+  box-shadow: 5px 2px 8px 2px var(--clr-text-5);
   padding: 1rem;
-  height: 16vh;
+  height: 150px;
   margin-bottom: 2rem;
 }
 .container {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  margin: auto;
 }
 .link {
-  grid-column: span 6;
+  grid-column: span 12;
+  margin: auto;
 }
 .nav-img {
   max-width: 150px;
 }
 .course {
-  grid-column: span 6;
+  grid-column: span 12;
+
   text-align: center;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   transform-style: preserve-3d;
 }
 .btn {
@@ -40,14 +43,56 @@ nav {
   width: 100%;
   letter-spacing: 0;
 }
+.active {
+  position: relative;
+  top: 50%;
+  transform: perspective(1px) translateY(-50%);
+  cursor: pointer;
+  display: block;
+  font-weight: 400;
+  margin: 0 0 2em;
+  max-width: 200px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%;
+  letter-spacing: 0;
+  color: var(--clr-primary-5);
+}
+.active:hover {
+  letter-spacing: 5px;
+  color: var(--clr-primary-3);
+  text-decoration: none;
+}
+
+.active:after,
+.active:before {
+  backface-visibility: hidden;
+  border: 1px solid var(--clr-primary-1);
+  bottom: 0px;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  transition: all 280ms ease-in-out;
+  width: 0;
+}
+
+.active:hover:after,
+.active:hover:before {
+  backface-visibility: hidden;
+  border-color: var(--clr-primary-1);
+  transition: width 350ms ease-in-out;
+  width: 70%;
+  bottom: auto;
+  top: 0;
+  width: 70%;
+}
 
 .btn:hover {
   letter-spacing: 5px;
   color: var(--clr-primary-2);
   text-decoration: none;
-}
-.btn:active {
-  color: red;
 }
 
 .btn:after,
@@ -72,6 +117,19 @@ nav {
   bottom: auto;
   top: 0;
   width: 70%;
+}
+@media screen and (min-width: 576px) {
+  nav {
+    height: 100px;
+  }
+  .link {
+    grid-column: span 6;
+    margin: 0;
+  }
+  .course {
+    grid-column: span 6;
+    justify-content: flex-end;
+  }
 }
 @media screen and (min-width: 768px) {
   .container {
