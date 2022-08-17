@@ -1,12 +1,12 @@
 import { useCourseContext } from "../../context/CourseContextProvider";
 
-const AllModal = ({ kid }) => {
-  const { isAllModal, setIsAllModal } = useCourseContext();
+const MyModal = ({ kid }) => {
+  const { isMyModal, setIsMyModal } = useCourseContext();
   const handleClose = () => {
-    setIsAllModal(false);
+    setIsMyModal(false);
   };
   return (
-    <div className={isAllModal ? "modal modal-open" : "modal"}>
+    <div className={isMyModal ? "modal modal-open" : "modal"}>
       <div
         data-aos="flip-down"
         className="modal-info"
@@ -22,4 +22,4 @@ const AllModal = ({ kid }) => {
   );
 };
 
-export default AllModal;
+export default MyModal;

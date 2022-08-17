@@ -18,7 +18,7 @@
   list-style: none;
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
+  margin: 2rem auto;
 }
 .pagination li {
   padding: 10px 12px;
@@ -74,7 +74,7 @@
   -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-  background-image: url("https://cdn.photographylife.com/wp-content/uploads/2017/01/What-is-landscape-photography.jpg");
+  background-image: url("https://pbs.twimg.com/profile_images/1360943119710253061/dWvmVVtD_400x400.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }

@@ -13,8 +13,8 @@ export const useCourseContext = () => {
 const CourseContextProvider = ({ children }) => {
   const [allCourses, setAllCourses] = useState([]);
   const [myCourses, setMyCourses] = useState([]);
-  const [isModal, setIsModal] = useState(false);
-  const [allUrl, setAllUrl] = useState([]);
+  const [isAllModal, setIsAllModal] = useState(false);
+  const [isMyModal, setIsMyModal] = useState(false);
   const [load, setLoad] = useState(false);
 
   // allcourses
@@ -37,9 +37,15 @@ const CourseContextProvider = ({ children }) => {
       .catch((error) => console.log("error", error));
   }, []);
 
-  // allcourses images
-
-  const values = { allCourses, myCourses, load, isModal, setIsModal };
+  const values = {
+    allCourses,
+    myCourses,
+    load,
+    isAllModal,
+    setIsAllModal,
+    isMyModal,
+    setIsMyModal,
+  };
   return (
     <CourseContext.Provider value={values}>{children}</CourseContext.Provider>
   );

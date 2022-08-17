@@ -6,7 +6,7 @@ import AllModal from "../../components/allmodal/AllModal";
 import defImg1 from "../../assets/default-img-1.webp";
 
 const AllCoursesSlider = () => {
-  const { allCourses, isModal, setIsModal } = useCourseContext();
+  const { allCourses, isAllModal, setIsAllModal } = useCourseContext();
   const [index, setIndex] = useState(0);
   const checkNumber = (number) => {
     if (number > allCourses.length - 1) {
@@ -36,7 +36,7 @@ const AllCoursesSlider = () => {
         <div
           className={sliderStyles["slider-info"]}
           id={allCourses[index]?.id}
-          onClick={() => setIsModal(true)}
+          onClick={() => setIsAllModal(true)}
         >
           <img
             className={sliderStyles["slider-info-img"]}
@@ -45,7 +45,9 @@ const AllCoursesSlider = () => {
           />
           <div className={sliderStyles["slider-info-text"]}>
             <h5>{allCourses[index]?.slug.replace(/-/g, " ")} </h5>
-            {isModal && <AllModal kid={allCourses[index]?.content.rendered} />}
+            {isAllModal && (
+              <AllModal kid={allCourses[index]?.content.rendered} />
+            )}
           </div>
         </div>
         <FaChevronRight
