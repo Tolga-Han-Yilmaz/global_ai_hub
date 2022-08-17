@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
-  border: 1px solid red;
+  grid-column: span 12;
 }
 
 .div-card {
@@ -75,7 +75,7 @@
 }
 @media (min-width: 1024px) {
   .card__caption {
-    top: calc(110% - 110px);
+    top: calc(118% - 110px);
     transform: unset;
   }
 }
@@ -128,12 +128,16 @@
 @media screen and (min-width: 768px) {
   .lists {
     width: 90%;
+    grid-column: span 6;
   }
   .div-card {
     grid-column: span 6;
   }
 }
 @media screen and (min-width: 992px) {
+  .lists {
+    grid-column: span 4;
+  }
   .div-card {
     grid-column: span 4;
   }

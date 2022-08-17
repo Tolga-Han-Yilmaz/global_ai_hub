@@ -1,9 +1,11 @@
 import listsStyles from "./allcourseslists.module.css";
 
 import { useEffect, useState } from "react";
+import AllModal from "../allmodal/AllModal";
 
-const AllCoursesLists = ({ course }) => {
+const AllCoursesLists = ({ idd, course, isAllModal, setIsAllModal }) => {
   const [getImg, setGetImg] = useState([]);
+  const [allModalInfo, setAllModalInfo] = useState([]);
   const getDataImg = async () => {
     fetch(course?._links["wp:featuredmedia"][0].href)
       .then((response) => response.json())
@@ -14,6 +16,10 @@ const AllCoursesLists = ({ course }) => {
     getDataImg();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const handleClick = (id) => {
+    // console.log(course.filter((single) => single.id === id));
+    setAllModalInfo(true);
+  };
   return (
     <div className={listsStyles["lists"]}>
       <div className={listsStyles["div-card"]}>
@@ -32,13 +38,15 @@ const AllCoursesLists = ({ course }) => {
               <br />
 
               <a
-                href={course.link}
-                target="_blank"
+                // href={course.link}
+                // target="_blank"
                 rel="noopener noreferrer"
                 className={listsStyles["card__button"]}
+                onClick={() => handleClick(course.id)}
               >
                 Read more
               </a>
+              {isAllModal && <AllModal course={course} />}
             </figcaption>
           </figure>
         </div>

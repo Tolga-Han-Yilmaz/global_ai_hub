@@ -1,7 +1,8 @@
 import { useCourseContext } from "../../context/CourseContextProvider";
 
-const AllModal = ({ kid }) => {
+const AllModal = ({ course }) => {
   const { isAllModal, setIsAllModal } = useCourseContext();
+  console.log(course);
   const handleClose = () => {
     setIsAllModal(false);
   };
@@ -11,7 +12,7 @@ const AllModal = ({ kid }) => {
         data-aos="flip-down"
         className="modal-info"
         dangerouslySetInnerHTML={{
-          __html: kid,
+          __html: "",
         }}
       />
 
