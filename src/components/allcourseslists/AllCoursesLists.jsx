@@ -12,39 +12,38 @@ const AllCoursesLists = ({ course }) => {
   };
   useEffect(() => {
     getDataImg();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <>
-      <div className={listsStyles["lists"]}>
-        <div className={listsStyles["div-card"]}>
-          <div className={listsStyles["card"]}>
-            <figure className={listsStyles["card__thumb"]}>
-              <img
-                src={getImg?.guid && getImg?.guid.rendered}
-                referrerPolicy="no-referrer"
-                alt=""
-                className={listsStyles["card__image"]}
-              />
-              <figcaption className={listsStyles["card__caption"]}>
-                <h5 className={listsStyles["card__title"]}>
-                  {course.slug.replace(/-/g, " ")}{" "}
-                </h5>
-                <br />
+    <div className={listsStyles["lists"]}>
+      <div className={listsStyles["div-card"]}>
+        <div className={listsStyles["card"]}>
+          <figure className={listsStyles["card__thumb"]}>
+            <img
+              src={getImg?.guid && getImg?.guid.rendered}
+              referrerPolicy="no-referrer"
+              alt=""
+              className={listsStyles["card__image"]}
+            />
+            <figcaption className={listsStyles["card__caption"]}>
+              <h5 className={listsStyles["card__title"]}>
+                {course.slug.replace(/-/g, " ")}{" "}
+              </h5>
+              <br />
 
-                <a
-                  href={course.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={listsStyles["card__button"]}
-                >
-                  Read more
-                </a>
-              </figcaption>
-            </figure>
-          </div>
+              <a
+                href={course.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={listsStyles["card__button"]}
+              >
+                Read more
+              </a>
+            </figcaption>
+          </figure>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

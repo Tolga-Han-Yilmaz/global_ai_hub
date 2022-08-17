@@ -3,15 +3,17 @@ import myStyles from "./mycourses.module.css";
 import defImg1 from "../../assets/default-img-1.webp";
 import { useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import MyModal from "../../components/mymodal/MyModal";
 
 const MyCourses = () => {
-  const { myCourses, load } = useCourseContext();
+  const { myCourses, load, isMyModal, setIsMyModal } = useCourseContext();
   const [myCoursesData, setMyCourseData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4);
   const [pageNumberLimit] = useState(3);
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(3);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
+  const [myModalInfo, setMyModalInfo] = useState([]);
 
   useEffect(() => {
     setMyCourseData(myCourses);
@@ -30,10 +32,6 @@ const MyCourses = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = myCoursesData.slice(indexOfFirstItem, indexOfLastItem);
 
-  const handleClick = (e) => {
-    setCurrentPage(e.target.id);
-  };
-
   const handleNextBtn = () => {
     setCurrentPage(Number(currentPage) + 1);
     if (currentPage + 1 > maxPageNumberLimit) {
@@ -49,7 +47,10 @@ const MyCourses = () => {
       setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
     }
   };
-  console.log(myCourses);
+  const handleClick = (id) => {
+    setMyModalInfo(currentItems.filter((mycourse) => mycourse.id === id));
+    setIsMyModal(true);
+  };
   return (
     <>
       {!load ? (
@@ -61,7 +62,13 @@ const MyCourses = () => {
             {currentItems?.map((mycourse) => {
               const { id, title, description, card_image } = mycourse;
               return (
-                <div className={myStyles["property-card"]} key={id}>
+                <div
+                  className={myStyles["property-card"]}
+                  key={id}
+                  onClick={() => handleClick(id)}
+                >
+                  {isMyModal && <MyModal myModalInfo={myModalInfo} />}
+
                   <div className={myStyles["property-image"]}>
                     <img
                       className={myStyles["my-card--img"]}

@@ -1,13 +1,11 @@
 .lists {
-  display: grid;
-  grid-column: span 12;
-  grid-template-columns: repeat(12, 1fr);
+  display: flex;
+  justify-content: center;
   gap: 1rem;
+  border: 1px solid red;
 }
 
 .div-card {
-  grid-column: span 12;
-
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

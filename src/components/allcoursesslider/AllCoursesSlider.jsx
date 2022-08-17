@@ -1,13 +1,14 @@
 import sliderStyles from "./allcoursesslider.module.css";
 import { useCourseContext } from "../../context/CourseContextProvider";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AllModal from "../../components/allmodal/AllModal";
-import defImg1 from "../../assets/default-img-1.webp";
+import defimg from "../../assets/default-img-1.webp";
 
-const AllCoursesSlider = () => {
-  const { allCourses, isAllModal, setIsAllModal } = useCourseContext();
-  const [index, setIndex] = useState(0);
+const AllCoursesSlider = ({ allCourses, getImg }) => {
+  const { isAllModal, setIsAllModal } = useCourseContext();
+  const [index, setIndex] = useState(1);
+
   const checkNumber = (number) => {
     if (number > allCourses.length - 1) {
       return 0;
@@ -26,9 +27,11 @@ const AllCoursesSlider = () => {
   function handleRight() {
     return setIndex((prevIndex) => {
       let number = prevIndex + 1;
+
       return checkNumber(number);
     });
   }
+
   return (
     <div className={sliderStyles["slider"]}>
       <div className={sliderStyles["slider-div"]}>
@@ -40,7 +43,7 @@ const AllCoursesSlider = () => {
         >
           <img
             className={sliderStyles["slider-info-img"]}
-            src={defImg1}
+            src={getImg.length > 0 ? getImg[index].source_url : defimg}
             alt=""
           />
           <div className={sliderStyles["slider-info-text"]}>
