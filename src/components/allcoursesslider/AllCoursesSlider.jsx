@@ -2,11 +2,11 @@ import sliderStyles from "./allcoursesslider.module.css";
 import { useCourseContext } from "../../context/CourseContextProvider";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useState } from "react";
-import Modal from "../../components/modal/Modal";
+import AllModal from "../../components/allmodal/AllModal";
 import defImg1 from "../../assets/default-img-1.webp";
 
 const AllCoursesSlider = () => {
-  const { allCourses } = useCourseContext();
+  const { allCourses, isModal, setIsModal } = useCourseContext();
   const [index, setIndex] = useState(0);
   const checkNumber = (number) => {
     if (number > allCourses.length - 1) {
@@ -33,7 +33,11 @@ const AllCoursesSlider = () => {
     <div className={sliderStyles["slider"]}>
       <div className={sliderStyles["slider-div"]}>
         <FaChevronLeft className={sliderStyles["icon"]} onClick={handleLeft} />
-        <div className={sliderStyles["slider-info"]} id={allCourses[index]?.id}>
+        <div
+          className={sliderStyles["slider-info"]}
+          id={allCourses[index]?.id}
+          onClick={() => setIsModal(true)}
+        >
           <img
             className={sliderStyles["slider-info-img"]}
             src={defImg1}
@@ -41,8 +45,7 @@ const AllCoursesSlider = () => {
           />
           <div className={sliderStyles["slider-info-text"]}>
             <h5>{allCourses[index]?.slug.replace(/-/g, " ")} </h5>
-
-            <Modal kid={allCourses[index]?.content.rendered} />
+            {isModal && <AllModal kid={allCourses[index]?.content.rendered} />}
           </div>
         </div>
         <FaChevronRight

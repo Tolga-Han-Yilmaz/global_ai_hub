@@ -2,6 +2,7 @@ import { useCourseContext } from "../../context/CourseContextProvider";
 import myStyles from "./mycourses.module.css";
 import defImg1 from "../../assets/default-img-1.webp";
 import { useEffect, useState } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const MyCourses = () => {
   const { myCourses, load } = useCourseContext();
@@ -58,16 +59,18 @@ const MyCourses = () => {
           <h1>My Courses</h1>
           <div className={myStyles["container"]}>
             {currentItems?.map((mycourse) => {
-              const { id, title, link, description, card_image, categories } =
-                mycourse;
+              const { id, title, description, card_image } = mycourse;
               return (
-                <div className={myStyles["my-card"]} key={id}>
-                  <img
-                    className={myStyles["my-card--img"]}
-                    src={card_image ? card_image : defImg1}
-                    alt={title}
-                  />
-                  <div className={myStyles["my-card--info"]}>
+                <div className={myStyles["property-card"]} key={id}>
+                  <div className={myStyles["property-image"]}>
+                    <img
+                      className={myStyles["my-card--img"]}
+                      src={card_image ? card_image : defImg1}
+                      alt={title}
+                    />
+                  </div>
+
+                  <div className={myStyles["property-description"]}>
                     <h5>{title}</h5>
                     <div
                       data-aos="flip-down"
@@ -86,7 +89,7 @@ const MyCourses = () => {
               onClick={handlePrevBtn}
               disabled={currentPage === pages[0] ? true : false}
             >
-              {"<"}
+              <FaChevronLeft className={myStyles["icon"]} />
             </button>
             {pages.map((number) => {
               if (
@@ -119,7 +122,7 @@ const MyCourses = () => {
               onClick={handleNextBtn}
               disabled={currentPage === pages[pages.length - 1] ? true : false}
             >
-              {">"}
+              <FaChevronRight className={myStyles["icon"]} />
             </button>
           </ul>
         </div>

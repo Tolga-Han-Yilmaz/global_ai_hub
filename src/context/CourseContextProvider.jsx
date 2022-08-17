@@ -13,7 +13,7 @@ export const useCourseContext = () => {
 const CourseContextProvider = ({ children }) => {
   const [allCourses, setAllCourses] = useState([]);
   const [myCourses, setMyCourses] = useState([]);
-  const [allLink, setAllLink] = useState([]);
+  const [isModal, setIsModal] = useState(false);
   const [allUrl, setAllUrl] = useState([]);
   const [load, setLoad] = useState(false);
 
@@ -39,7 +39,7 @@ const CourseContextProvider = ({ children }) => {
 
   // allcourses images
 
-  const values = { allCourses, myCourses, load };
+  const values = { allCourses, myCourses, load, isModal, setIsModal };
   return (
     <CourseContext.Provider value={values}>{children}</CourseContext.Provider>
   );
