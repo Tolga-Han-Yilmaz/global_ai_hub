@@ -2,14 +2,12 @@
 import { useCourseContext } from "../../context/CourseContextProvider";
 import myStyles from "./mymodal.module.css";
 
-const MyModal = ({ kid, myModalInfo }) => {
+const MyModal = ({ myModalInfo }) => {
   const { isMyModal, setIsMyModal } = useCourseContext();
   const handleClose = () => {
     setIsMyModal(false);
   };
-  console.log(myModalInfo);
   const { title, description, tags, link } = myModalInfo[0];
-  console.log(title, description);
   return (
     <div className={isMyModal ? "modal modal-open" : "modal"}>
       <div className="modal-info">

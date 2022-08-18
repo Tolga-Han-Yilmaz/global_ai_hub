@@ -1,6 +1,5 @@
 import allStyles from "./allcourses.module.css";
 import { useCourseContext } from "../../context/CourseContextProvider";
-
 import AllCoursesLists from "../../components/allcourseslists/AllCoursesLists";
 
 const AllCourses = () => {
@@ -13,7 +12,11 @@ const AllCourses = () => {
       ) : (
         <div className={allStyles["allcourse"]}>
           {allCourses?.map((course) => (
-            <AllCoursesLists key={course.id} idd={course.id} course={course} />
+            <AllCoursesLists
+              key={course.id}
+              allCourses={allCourses}
+              course={course}
+            />
           ))}
         </div>
       )}

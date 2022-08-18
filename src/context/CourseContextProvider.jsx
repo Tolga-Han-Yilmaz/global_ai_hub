@@ -11,10 +11,16 @@ export const useCourseContext = () => {
 
 //? 2- Provider Component
 const CourseContextProvider = ({ children }) => {
+  //! States
+  // allcourses data
   const [allCourses, setAllCourses] = useState([]);
+  // mycourses data
   const [myCourses, setMyCourses] = useState([]);
+  // allmodal show
   const [isAllModal, setIsAllModal] = useState(false);
+  // mymodal show
   const [isMyModal, setIsMyModal] = useState(false);
+  // loading
   const [load, setLoad] = useState(false);
 
   // allcourses

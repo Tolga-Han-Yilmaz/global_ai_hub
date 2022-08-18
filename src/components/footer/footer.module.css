@@ -2,7 +2,7 @@ footer {
   display: flex;
   justify-content: center;
   height: 16vh;
-  margin-top: 3rem;
+  margin-top: 8rem;
 }
 .container {
   display: grid;
@@ -39,19 +39,23 @@ footer {
   margin-bottom: 1rem;
 }
 .icon:nth-child(1) {
-  color: #3b5998;
+  color: var(--clr-facebook);
 }
 .icon:nth-child(2) {
-  color: #26a6d1;
+  color: var(--clr-twitter);
 }
 .icon:nth-child(3) {
-  color: #ff0000;
+  color: var(--clr-youtube);
 }
 .icon:nth-child(4) {
-  color: #c8232c;
+  color: var(--clr-pinterest);
 }
 
+/* Media Query */
 @media screen and (min-width: 768px) {
+  footer {
+    margin-top: 3rem;
+  }
   .container {
     width: 90%;
   }

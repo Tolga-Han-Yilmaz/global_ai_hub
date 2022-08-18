@@ -51,12 +51,15 @@ const MyCourses = () => {
     setMyModalInfo(currentItems.filter((mycourse) => mycourse.id === id));
     setIsMyModal(true);
   };
+
   return (
     <>
       {!load ? (
         <div className="loading"></div>
       ) : (
         <div className={myStyles["mycourses"]}>
+          {/* MyModal */}
+          {isMyModal && <MyModal myModalInfo={myModalInfo} />}
           <h1>My Courses</h1>
           <div className={myStyles["container"]}>
             {currentItems?.map((mycourse) => {
@@ -67,8 +70,6 @@ const MyCourses = () => {
                   key={id}
                   onClick={() => handleClick(id)}
                 >
-                  {isMyModal && <MyModal myModalInfo={myModalInfo} />}
-
                   <div className={myStyles["property-image"]}>
                     <img
                       className={myStyles["my-card--img"]}

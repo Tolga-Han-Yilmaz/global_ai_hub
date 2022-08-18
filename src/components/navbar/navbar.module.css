@@ -118,6 +118,8 @@ nav {
   top: 0;
   width: 70%;
 }
+
+/* Media Query */
 @media screen and (min-width: 576px) {
   nav {
     height: 100px;

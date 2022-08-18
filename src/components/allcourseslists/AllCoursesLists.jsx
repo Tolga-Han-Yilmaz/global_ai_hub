@@ -1,11 +1,13 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import listsStyles from "./allcourseslists.module.css";
-
 import { useEffect, useState } from "react";
 import AllModal from "../allmodal/AllModal";
+import { useCourseContext } from "../../context/CourseContextProvider";
 
-const AllCoursesLists = ({ idd, course, isAllModal, setIsAllModal }) => {
+const AllCoursesLists = ({ course }) => {
+  const { isAllModal, setIsAllModal } = useCourseContext();
+
   const [getImg, setGetImg] = useState([]);
-  const [allModalInfo, setAllModalInfo] = useState([]);
   const getDataImg = async () => {
     fetch(course?._links["wp:featuredmedia"][0].href)
       .then((response) => response.json())
@@ -14,11 +16,12 @@ const AllCoursesLists = ({ idd, course, isAllModal, setIsAllModal }) => {
   };
   useEffect(() => {
     getDataImg();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const handleClick = (id) => {
-    // console.log(course.filter((single) => single.id === id));
-    setAllModalInfo(true);
+
+  const handleClick = async (asd) => {
+    await setIsAllModal(true);
   };
   return (
     <div className={listsStyles["lists"]}>
@@ -38,19 +41,17 @@ const AllCoursesLists = ({ idd, course, isAllModal, setIsAllModal }) => {
               <br />
 
               <a
-                // href={course.link}
-                // target="_blank"
-                rel="noopener noreferrer"
                 className={listsStyles["card__button"]}
                 onClick={() => handleClick(course.id)}
               >
                 Read more
               </a>
-              {isAllModal && <AllModal course={course} />}
             </figcaption>
           </figure>
         </div>
       </div>
+      {/* AllModal */}
+      {isAllModal && <AllModal rendered={course.content.rendered} />}
     </div>
   );
 };
